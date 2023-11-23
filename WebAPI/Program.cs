@@ -11,6 +11,13 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ICourseService,CourseManager>();
 builder.Services.AddSingleton<ICourseDal, EfCourseDal>();
 
+builder.Services.AddSingleton<ICategoryService, CategoryManager>();
+builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
+
+builder.Services.AddSingleton<IInstructorService, InstructorManager>();
+builder.Services.AddSingleton<IInstructorDal,EfInstructorDal>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
