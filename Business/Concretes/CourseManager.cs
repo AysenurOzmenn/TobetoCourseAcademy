@@ -1,5 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
@@ -21,14 +23,10 @@ namespace Business.Concretes
             _courseDal = courseDal;
         }
 
+        [ValidationAspect(typeof(CourseValidator))]
         public IResult Add(Course course)
         {
-            //business codes
-            if (course.Name.Length < 2) 
-            {   //magic strings
-                return new ErrorResult(Messages.CourseNameInvalid);
-            }
-    
+             //business codes
              _courseDal.Add(course);
             return new SuccessResult(Messages.CourseAdded);
         }
